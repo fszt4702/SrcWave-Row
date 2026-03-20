@@ -3,7 +3,7 @@
 以源代码为根基，追逐技术浪潮，逐行打磨能力，在软件工程的学习与实践中并肩前行，稳步成长。
 
 ## 团队 Logo
-![Team Logo](images/team-logo.png)
+![Team Logo](images/SrcWave-Row.png)
 
 ## 团队成员
 ### 成员1：张业恒
