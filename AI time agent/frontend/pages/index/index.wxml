@@ -1,0 +1,71 @@
+<view class="app-container">
+  <!-- 头部：自适应状态氛围光晕 -->
+  <view class="header-card">
+    <view class="status-halo {{hw_status}}"></view>
+    <view class="header-text">
+      <text class="title">🧠 智能时间大脑</text>
+      <text class="sub-title">自适应状态：{{status_text}}</text>
+    </view>
+  </view>
+
+  <!-- 视图层：日程看板 -->
+  <view class="section-header">
+    <view class="section-title">📅 今日动态日程</view>
+    <!-- 新增按钮 -->
+    <view class="add-btn" bindtap="openAddModal">+ 新增</view>
+  </view>
+
+  <scroll-view class="task-list" scroll-y>
+    <view class="task-item" wx:for="{{tasks}}" wx:key="id">
+      <view class="task-time">{{item.time}}</view>
+      <view class="task-content">
+        <view class="task-name">{{item.name}}</view>
+        <view class="task-meta">
+          <text class="tag">{{item.tag}}</text>
+          <text class="status-badge {{item.status == '已完成' ? 'status-done' : (item.status == '待办' ? 'status-todo' : 'status-delay')}}">{{item.status}}</text>
+        </view>
+      </view>
+      <!-- 删除按钮 -->
+      <view class="delete-icon" bindtap="onDeleteTask" data-id="{{item.id}}">×</view>
+    </view>
+  </scroll-view>
+
+  <!-- 交互层：AI 动态决策与心理疏导舱 -->
+  <view class="ai-cabin">
+    <view class="ai-avatar-row">
+      <view class="ai-avatar">🤖</view>
+      <view class="ai-bubble">
+        <text class="ai-reply-text">{{ai_reply}}</text>
+      </view>
+    </view>
+
+    <!-- 快捷模拟场景 -->
+    <view class="shortcut-title">💡 模拟突发状况快捷键</view>
+    <view class="btn-grid">
+      <button class="btn btn-warn" bindtap="onShortcut" data-text="实验课拖堂了，全身酸痛，写不动核心代码了。">😫 实验拖堂累瘫</button>
+      <button class="btn btn-info" bindtap="onShortcut" data-text="计划被打乱了，辅导员突然通知21:00紧急开班会。">📢 临时紧急班会</button>
+      <button class="btn btn-danger" bindtap="onShortcut" data-text="头疼得厉害，浑身没力气，只想躺着。">🤒 感冒发烧无力</button>
+      <button class="btn btn-normal" bindtap="onReset">🔄 恢复日程模板</button>
+    </view>
+
+    <!-- 手动输入 -->
+    <view class="input-area">
+      <input class="custom-input" placeholder="手动输入突发状况或请求安排..." bindconfirm="onSend" value="{{inputValue}}" confirm-type="send" />
+    </view>
+  </view>
+
+  <!-- 新增日程的弹窗 Modal -->
+  <view class="modal-mask" wx:if="{{showAddModal}}">
+    <view class="modal-content">
+      <view class="modal-title">✨ 自定义新日程</view>
+      <input class="modal-input" placeholder="时间段 (如 08:00-09:00)" model:value="{{newTaskTime}}" />
+      <input class="modal-input" placeholder="任务名称 (如 晨跑背单词)" model:value="{{newTaskName}}" />
+      <input class="modal-input" placeholder="标签类别 (如 运动/学习)" model:value="{{newTaskTag}}" />
+      
+      <view class="modal-btns">
+        <button class="btn-cancel" bindtap="closeAddModal">取消</button>
+        <button class="btn-confirm" bindtap="submitNewTask">添加到大脑</button>
+      </view>
+    </view>
+  </view>
+</view>

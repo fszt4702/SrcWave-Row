@@ -1,0 +1,305 @@
+page {
+  background-color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.app-container {
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 头部卡片：虚拟氛围光晕 */
+.header-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 30rpx;
+}
+
+/* 状态光晕核心 CSS (利用高斯模糊与渐变模拟发光) */
+.status-halo {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 30rpx;
+  filter: blur(8rpx);
+  transition: all 0.5s ease;
+}
+
+/* 状态光效类 */
+.status-halo.FOCUS {
+  background: radial-gradient(circle, #38bdf8 0%, #0284c7 100%);
+  box-shadow: 0 0 30rpx rgba(2, 132, 199, 0.8);
+  animation: pulse 2s infinite;
+}
+.status-halo.RELAX {
+  background: radial-gradient(circle, #fbbf24 0%, #d97706 100%);
+  box-shadow: 0 0 30rpx rgba(217, 119, 6, 0.8);
+  animation: pulse 2.5s infinite;
+}
+.status-halo.SLEEP {
+  background: radial-gradient(circle, #94a3b8 0%, #475569 100%);
+  box-shadow: 0 0 10rpx rgba(71, 85, 105, 0.3);
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #0f172a;
+}
+.sub-title {
+  font-size: 24rpx;
+  color: #64748b;
+  margin-top: 6rpx;
+}
+
+/* 日程列表样式 */
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #334155;
+  margin-bottom: 20rpx;
+}
+
+.task-list {
+  max-height: 400rpx;
+  margin-bottom: 30rpx;
+}
+
+.task-item {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  display: flex;
+  margin-bottom: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.02);
+}
+
+.task-time {
+  font-size: 24rpx;
+  color: #64748b;
+  width: 160rpx;
+  border-right: 1rpx solid #e2e8f0;
+  display: flex;
+  align-items: center;
+}
+
+.task-content {
+  flex: 1;
+  padding-left: 24rpx;
+}
+
+.task-name {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.task-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+.tag {
+  font-size: 20rpx;
+  background-color: #f1f5f9;
+  color: #475569;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+/* 状态角标 */
+.status-badge {
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  font-weight: bold;
+}
+.status-todo { background: #fef3c7; color: #d97706; }
+.status-done { background: #d1fae5; color: #059669; }
+.status-delay { background: #fee2e2; color: #dc2626; }
+
+/* AI 心理疏导与动态调度舱 */
+.ai-cabin {
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.ai-avatar-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30rpx;
+}
+
+.ai-avatar {
+  font-size: 48rpx;
+  margin-right: 20rpx;
+}
+
+.ai-bubble {
+  background: #f1f5f9;
+  padding: 20rpx 30rpx;
+  border-radius: 0 20rpx 20rpx 20rpx;
+  flex: 1;
+}
+
+.ai-reply-text {
+  font-size: 26rpx;
+  color: #334155;
+  line-height: 1.6;
+}
+
+/* 模拟场景键位 */
+.shortcut-title {
+  font-size: 24rpx;
+  color: #64748b;
+  margin-bottom: 16rpx;
+}
+
+.btn-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16rpx;
+  margin-bottom: 30rpx;
+}
+
+.btn {
+  font-size: 22rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 12rpx;
+  padding: 0 10rpx;
+  text-align: center;
+}
+.btn-warn { background: #ffe4e6; color: #e11d48; }
+.btn-info { background: #e0f2fe; color: #0284c7; }
+.btn-danger { background: #fee2e2; color: #dc2626; }
+.btn-normal { background: #f1f5f9; color: #475569; }
+
+/* 输入栏 */
+.input-area {
+  border-top: 1rpx solid #f1f5f9;
+  padding-top: 20rpx;
+}
+
+.custom-input {
+  background: #f8fafc;
+  height: 80rpx;
+  border-radius: 40rpx;
+  padding: 0 30rpx;
+  font-size: 26rpx;
+}
+/* 追加到原本 index.wxss 的最后面 */
+
+/* 看板头部带新增按钮 */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.add-btn {
+  font-size: 24rpx;
+  color: #0284c7;
+  background: #e0f2fe;
+  padding: 6rpx 20rpx;
+  border-radius: 20rpx;
+  font-weight: bold;
+}
+
+/* 删除按钮 */
+.task-item {
+  position: relative; /* 确保定位生效 */
+}
+.delete-icon {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 36rpx;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 32rpx;
+  border-radius: 50%;
+  background: #f1f5f9;
+}
+
+/* 弹窗遮罩层 */
+.modal-mask {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* 弹窗内容区 */
+.modal-content {
+  background: #ffffff;
+  width: 80%;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  box-shadow: 0 10rpx 30rpx rgba(0,0,0,0.1);
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30rpx;
+  color: #1e293b;
+}
+
+.modal-input {
+  background: #f8fafc;
+  border: 1rpx solid #e2e8f0;
+  height: 80rpx;
+  border-radius: 12rpx;
+  padding: 0 20rpx;
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+}
+
+.modal-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+
+.btn-cancel {
+  width: 45%;
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 28rpx;
+}
+
+.btn-confirm {
+  width: 45%;
+  background: #0284c7;
+  color: white;
+  font-size: 28rpx;
+}
