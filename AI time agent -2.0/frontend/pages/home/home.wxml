@@ -1,0 +1,45 @@
+<view class="page">
+  <view class="status-bar" style="height: {{statusBarHeight}}px"></view>
+  
+  <view class="header">
+    <view class="header-content">
+      <view class="header-left">
+        <text class="date-title">今日日程</text>
+        <text class="date-subtitle">保持专注，稳步前行</text>
+      </view>
+      <view class="header-right" bindtap="showAddTask">
+        <image class="add-icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'%3E%3C/line%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3C/svg%3E" mode="widthFix"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="task-list">
+    <block wx:for="{{tasks}}" wx:key="id">
+      <view class="task-card">
+        <view class="task-color-bar bg-{{item.color || 'blue'}}"></view>
+        <view class="task-main">
+          <text class="task-title">{{item.title}}</text>
+          <view class="task-info">
+            <text class="task-time">{{item.time}}</text>
+            <text class="task-status {{item.status === '已完成' ? 'status-done' : (item.status === '进行中' ? 'status-doing' : 'status-todo')}}">{{item.status}}</text>
+          </view>
+        </view>
+        <view class="delete-btn" catchtap="deleteTask" data-id="{{item.id}}">×</view>
+      </view>
+    </block>
+    <view wx:if="{{tasks.length === 0}}" class="empty-state">
+      <text>今天很清闲，点击右上角添加日程吧</text>
+    </view>
+  </view>
+
+  <view class="modal-mask" wx:if="{{showAddTask}}" bindtap="hideAddTask"></view>
+  <view class="modal-content" wx:if="{{showAddTask}}">
+    <view class="modal-header">新建日程</view>
+    <input class="modal-input" placeholder="输入日程名称 (如: 操场晨跑)" value="{{newTaskTitle}}" bindinput="onTitleInput"></input>
+    <input class="modal-input" placeholder="输入时间 (如: 08:00-09:00)" value="{{newTaskTime}}" bindinput="onTimeInput"></input>
+    <view class="modal-actions">
+      <view class="modal-btn cancel" bindtap="hideAddTask">取消</view>
+      <view class="modal-btn confirm" bindtap="confirmAddTask">确定</view>
+    </view>
+  </view>
+</view>

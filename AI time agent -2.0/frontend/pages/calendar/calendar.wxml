@@ -1,0 +1,30 @@
+<view class="page">
+  <view class="status-bar" style="height: {{statusBarHeight}}px"></view>
+  <view class="calendar-header">
+    <view class="month-title">2026年9月</view>
+    <view class="week-row">
+      <view class="week-day" wx:for="{{days}}" wx:key="*this">{{item}}</view>
+    </view>
+    <view class="date-row">
+      <view class="date-cell {{selectedDate === item ? 'active' : ''}}" wx:for="{{dates}}" wx:key="*this" bindtap="selectDate" data-date="{{item}}">
+        <text class="date-num">{{item}}</text>
+        <view class="date-dot" wx:if="{{item === 24}}"></view>
+      </view>
+    </view>
+  </view>
+  <view class="timeline">
+    <view class="timeline-title">今日安排</view>
+    <block wx:for="{{tasks}}" wx:key="id">
+      <view class="timeline-item">
+        <view class="time-label">{{item.time}}</view>
+        <view class="timeline-content">
+          <view class="timeline-dot bg-{{item.color || 'blue'}}"></view>
+          <view class="timeline-card">
+            <text class="tl-title">{{item.title}}</text>
+            <text class="tl-status {{item.status === '已完成' ? 'text-slate' : (item.status === '进行中' ? 'text-blue' : 'text-orange')}}">{{item.status}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
